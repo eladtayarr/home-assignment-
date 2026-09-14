@@ -1,0 +1,36 @@
+plan_code,plan_name,plan_family,monthly_list_price,is_legacy_plan
+PLN-B40,Basic 40,Basic,35,False
+PLN-B60,Basic 60,Basic,42,False
+PLN-FAM,Family Line,Family,49,False
+PLN-S100,Smart 100,Smart,55,False
+PLN-S200,Smart 200,Smart,69,False
+PLN-S300,Smart 300,Smart,79,False
+PLN-SNR,Senior 65+,Senior,35,False
+PLN-T01,Basic 32 Legacy,Basic,32,True
+PLN-T02,Smart 51 Plus,Smart,51,True
+PLN-T03,Unlimited 109 Plus,Unlimited,109,True
+PLN-T04,Youth 34 Legacy,Youth,34,True
+PLN-T05,Senior 30 Plus,Senior,30,True
+PLN-T06,Family 49 Plus,Family,49,True
+PLN-T07,Data 46 Legacy,Data,46,True
+PLN-T08,Basic 41 Plus,Basic,41,True
+PLN-T09,Smart 52 Plus,Smart,52,True
+PLN-T10,Unlimited 83 Legacy,Unlimited,83,True
+PLN-T11,Youth 45 Plus,Youth,45,True
+PLN-T12,Senior 31 Plus,Senior,31,True
+PLN-T13,Family 66 Legacy,Family,66,True
+PLN-T14,Data 48 Plus,Data,48,True
+PLN-T15,Basic 31 Plus,Basic,31,True
+PLN-T16,Smart 63 Legacy,Smart,63,True
+PLN-T17,Unlimited 129 Plus,Unlimited,129,True
+PLN-T18,Youth 33 Plus,Youth,33,True
+PLN-T19,Senior 37 Legacy,Senior,37,True
+PLN-T20,Family 53 Plus,Family,53,True
+PLN-T21,Data 26 Plus,Data,26,True
+PLN-T22,Basic 44 Legacy,Basic,44,True
+PLN-T23,Smart 57 Plus,Smart,57,True
+PLN-T24,Unlimited 87 Plus,Unlimited,87,True
+PLN-T25,Youth 45 Legacy,Youth,45,True
+PLN-U69,Unlimited Lite,Unlimited,69,False
+PLN-UMAX,Unlimited Max,Unlimited,89,False
+PLN-YTH,Youth,Youth,39,False
