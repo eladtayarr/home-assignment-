@@ -269,3 +269,65 @@ quality memo (§2.3) — 20% of the active base sits on one of 25 near-duplicate
 whether the legacy base is shrinking (plans sunsetting naturally) or growing
 (new subscribers still being sold onto discontinued-in-spirit plans, which
 would be a governance problem worth flagging).
+
+### Dealer acquisition quality (added after Phase 4 finding)
+
+The Phase 4 investigation found that gross-adds-only dealer reporting let a
+serious quality problem (MobileZone's H1‑2025 acquisition surge, 27% of that
+cohort churned within 180 days vs. 6.7–10.9% for every other dealer) go
+unnoticed for two quarters. These two additions turn "acquisition quality" into
+a standing, ongoing measure instead of a one-time investigation.
+
+```DAX
+Churned Within 180 Days =
+NOT ISBLANK(dim_subscriber[churn_date]) &&
+DATEDIFF(dim_subscriber[join_date], dim_subscriber[churn_date], DAY) <= 180
+```
+*Calculated column on `dim_subscriber`.* Flags whether a subscriber churned
+fast — within roughly six months of joining. Uses only `join_date`/`churn_date`,
+already present in the model; no new import needed.
+
+```DAX
+New Subscriber Share % =
+VAR PeriodStart = MIN(dim_date[date])
+VAR PeriodEnd = MAX(dim_date[date])
+VAR DealerAdds = [New Subscribers (Gross Adds)]
+VAR CompanyAdds =
+    CALCULATE(
+        COUNTROWS(dim_subscriber),
+        REMOVEFILTERS(dim_dealer),
+        dim_subscriber[join_date] >= PeriodStart,
+        dim_subscriber[join_date] <= PeriodEnd
+    )
+RETURN
+    DIVIDE(DealerAdds, CompanyAdds)
+```
+*What it is:* a dealer's share of that period's total new-subscriber adds.
+*Why it matters:* this is the number that would have flagged the MobileZone
+problem in real time — its share of new adds jumped from a normal ~15–19% to
+~40% for two consecutive quarters before any churn showed up. A sudden,
+sustained jump in one dealer's acquisition share is worth a look on its own,
+independent of churn.
+
+```DAX
+180-Day Cohort Churn Rate =
+VAR CohortSize = COUNTROWS(dim_subscriber)
+VAR CohortChurned180 =
+    CALCULATE(
+        COUNTROWS(dim_subscriber),
+        dim_subscriber[Churned Within 180 Days] = TRUE
+    )
+RETURN
+    DIVIDE(CohortChurned180, CohortSize)
+```
+*What it is:* of the subscribers who joined in the period selected (the
+"cohort"), what share had already churned within 180 days of joining — sliced
+by dealer, this is the acquisition-quality scorecard. **This is the single
+number that isolates the MobileZone problem**: 27.1% for MobileZone's H1‑2025
+cohort vs. 6.7–10.9% for every other dealer's H1‑2025 cohort.
+*Usage note:* only meaningful when the date filter is set to a **join cohort
+period** (e.g. "subscribers who joined in Q1 2025"), not an arbitrary reporting
+period — pair it with a slicer on `dim_subscriber[join_date]`, not
+`dim_date`, since this measure deliberately does not use the date-table
+relationship (it needs the subscriber's *join* month, not the currently
+selected *reporting* month).
