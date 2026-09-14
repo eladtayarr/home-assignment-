@@ -1,9 +1,9 @@
 table dim_district
-	lineageTag: 1c181aa4-addb-4a44-b020-9ff4ba9e66c3
+	lineageTag: 1a07abf3-d43c-46aa-bfd1-01f1dd7610d8
 
 	column district
 		dataType: string
-		lineageTag: 5061e1ee-b2f0-4d0d-8672-6673c03a12b5
+		lineageTag: 4453f923-7cb6-4a65-903c-880308531219
 		summarizeBy: none
 		sourceColumn: district
 

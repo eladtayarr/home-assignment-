@@ -457,12 +457,16 @@ def render_table_tmdl(table_name):
     out = []
     out.append('table %s' % table_name)
     out.append('%slineageTag: %s' % (TAB, guid()))
+    if table_name == "dim_date":
+        out.append('%sdataCategory: Time' % TAB)
     out.append('')
 
-    def col_block(col, dtype, format_string=None):
+    def col_block(col, dtype, format_string=None, is_key=False):
         b = []
         b.append('%scolumn %s' % (TAB, col if " " not in col else "'%s'" % col))
         b.append('%s%sdataType: %s' % (TAB, TAB, dtype))
+        if is_key:
+            b.append('%s%sisKey' % (TAB, TAB))
         if format_string:
             b.append('%s%sformatString: %s' % (TAB, TAB, format_string))
         b.append('%s%slineageTag: %s' % (TAB, TAB, guid()))
@@ -478,7 +482,8 @@ def render_table_tmdl(table_name):
     for col in spec["bool_columns"]:
         out.append(col_block(col, "boolean"))
     for col in spec["date_columns"]:
-        out.append(col_block(col, "dateTime", format_string="Short Date"))
+        is_key = (table_name == "dim_date" and col == "date")
+        out.append(col_block(col, "dateTime", format_string="Short Date", is_key=is_key))
 
     for col, expr, dtype in CALCULATED_COLUMNS.get(table_name, []):
         out.append('%scolumn %s = %s' % (TAB, "'%s'" % col if " " in col else col, expr))

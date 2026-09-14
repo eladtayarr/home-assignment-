@@ -1,10 +1,10 @@
 table _Measures
-	lineageTag: 5246b030-7760-461f-a30c-b7f2672ae418
+	lineageTag: c8cbb3aa-3a35-4b88-8363-21b48db7593e
 	isHidden
 
 	column _
 		dataType: int64
-		lineageTag: efcf4f51-b703-4a5e-ba00-9b25dad61157
+		lineageTag: bbb12059-7ea5-41e9-9548-1eec00284f8c
 		isHidden
 		summarizeBy: none
 		sourceColumn: _
@@ -16,7 +16,7 @@ table _Measures
 		SUM(fact_billing[billed_amount])
 		```
 		formatString: "#,##0"
-		lineageTag: 2f8a1136-0f3b-45f2-8f92-5d85cb4a5589
+		lineageTag: dec7ece3-e8d9-4173-88de-50a702500e50
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -29,7 +29,7 @@ table _Measures
 		    DIVIDE(CurrentRevenue - PriorMonthRevenue, PriorMonthRevenue)
 		```
 		formatString: "0.0%;-0.0%;0.0%"
-		lineageTag: 96acb436-ba36-4a92-a98b-27c1a2a42bb8
+		lineageTag: fabd428f-6487-4800-bd56-f6ae9eb25357
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -42,7 +42,7 @@ table _Measures
 		    DIVIDE(CurrentRevenue - PriorYearRevenue, PriorYearRevenue)
 		```
 		formatString: "0.0%;-0.0%;0.0%"
-		lineageTag: cd5213bf-9166-446a-acb5-7e3056837066
+		lineageTag: 9aff6003-05a8-4941-8d9b-4543f9bf9e62
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -54,7 +54,7 @@ table _Measures
 		)
 		```
 		formatString: "#,##0"
-		lineageTag: db38a5e0-7c03-429c-94b3-55f628fc5439
+		lineageTag: cf74a780-9e1b-4838-bf90-abcc15cb47b5
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -66,7 +66,7 @@ table _Measures
 		)
 		```
 		formatString: "#,##0"
-		lineageTag: 8dbf523c-576d-4ae8-a5da-7377ee5608d5
+		lineageTag: dd172965-41ee-48eb-9866-bb64ebcd6d5e
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -81,7 +81,7 @@ table _Measures
 		)
 		```
 		formatString: "#,##0"
-		lineageTag: 5170d963-4bc0-4a39-a6d2-00217734fac7
+		lineageTag: 8bd96102-79eb-436e-ae07-027dbeba5af8
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -97,7 +97,7 @@ table _Measures
 		)
 		```
 		formatString: "#,##0"
-		lineageTag: 25850f3d-295d-4798-9a61-8e30a46e9d56
+		lineageTag: 95aa3f9e-4262-4bc1-87bc-eeadbad0a148
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -113,7 +113,7 @@ table _Measures
 		)
 		```
 		formatString: "#,##0"
-		lineageTag: b7d8feac-bb7a-48d8-9653-29032996dbb0
+		lineageTag: 909a3db0-f7c4-4825-beca-ff86104b2c76
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -129,7 +129,7 @@ table _Measures
 		)
 		```
 		formatString: "#,##0"
-		lineageTag: 8f93727f-768a-481c-92a1-102c37ad9681
+		lineageTag: bba6871f-89ff-41f0-98c2-29436a6c27d6
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -138,7 +138,7 @@ table _Measures
 		[New Subscribers (Gross Adds)] - [Churned Subscribers]
 		```
 		formatString: "#,##0"
-		lineageTag: 71f10413-0e1e-4373-8aae-ea137f349398
+		lineageTag: 6ca6e575-3b1f-42d1-a5c8-12e9930e5913
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -147,7 +147,7 @@ table _Measures
 		DIVIDE([Churned Subscribers], [Active Subscribers (BOP)])
 		```
 		formatString: "0.00%;-0.00%;0.00%"
-		lineageTag: dfebdc7b-bfb5-44da-91c3-5919145bed41
+		lineageTag: 0e355591-430a-4abf-98a7-078e0d8dd526
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -159,7 +159,7 @@ table _Measures
 		)
 		```
 		formatString: "0.00%;-0.00%;0.00%"
-		lineageTag: 59de3dd3-d2e5-4555-8160-dec5c5549ce2
+		lineageTag: 098c5c09-0041-4b26-92cd-68d950359f00
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -168,7 +168,7 @@ table _Measures
 		DIVIDE([Total Revenue], [Active Subscribers (EOP)])
 		```
 		formatString: "#,##0.00"
-		lineageTag: 52cb8d87-8cf9-4dbe-a66a-91e7b758e269
+		lineageTag: 4cdc2d2f-49a6-4265-9556-b8924a977409
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -180,7 +180,7 @@ table _Measures
 		    DIVIDE(CurrentARPU - PriorMonthARPU, PriorMonthARPU)
 		```
 		formatString: "0.0%;-0.0%;0.0%"
-		lineageTag: 52b00bb7-e693-4753-be73-6055dd38a78e
+		lineageTag: 54fa83bd-4f52-47da-b874-6b4a71c2641e
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -189,7 +189,7 @@ table _Measures
 		SUM(fact_budget[budget_amount])
 		```
 		formatString: "#,##0"
-		lineageTag: 3f166aae-65aa-4804-88cf-44e83703fc61
+		lineageTag: f9cc18be-1f66-41a1-b04d-49351bc5858d
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -198,7 +198,7 @@ table _Measures
 		[Total Revenue] - [Budget Revenue]
 		```
 		formatString: "#,##0;-#,##0"
-		lineageTag: b2160756-e45f-43a2-b2b0-6f1a262356f0
+		lineageTag: 069ae1ff-2d47-4a67-816b-59f526e76764
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -207,7 +207,7 @@ table _Measures
 		DIVIDE([Budget Variance], [Budget Revenue])
 		```
 		formatString: "0.0%;-0.0%;0.0%"
-		lineageTag: afe69e5b-80cb-4c32-bf74-d521200bd4ca
+		lineageTag: bbb06733-b2b7-4158-9bc3-cba7fe454764
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -219,7 +219,7 @@ table _Measures
 		    ActualYTD - BudgetYTD
 		```
 		formatString: "#,##0;-#,##0"
-		lineageTag: 8df5c558-3af9-4c3d-9840-78d70d55deb2
+		lineageTag: c2136a69-e866-4a8c-b4d1-1b83e79be657
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -240,7 +240,7 @@ table _Measures
 		    DIVIDE(LegacyActive, TotalActive)
 		```
 		formatString: "0.0%;-0.0%;0.0%"
-		lineageTag: 39152e53-6d96-4782-a3b9-47f1ba91a923
+		lineageTag: bd207c3e-9639-4cd1-9d6c-6888674b276f
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -260,7 +260,7 @@ table _Measures
 		    DIVIDE(DealerAdds, CompanyAdds)
 		```
 		formatString: "0.0%;-0.0%;0.0%"
-		lineageTag: 1d21671c-7407-4a9f-acdf-c94f192ae1a2
+		lineageTag: 08308243-62fc-4c6f-8575-8d73475a2383
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -276,7 +276,7 @@ table _Measures
 		    DIVIDE(CohortChurned180, CohortSize)
 		```
 		formatString: "0.0%;-0.0%;0.0%"
-		lineageTag: 1f88ddb6-e0e4-4d83-a937-00e609e04350
+		lineageTag: 96012a5f-9c73-4eb4-9d9d-6162782ec83a
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

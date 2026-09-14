@@ -1,9 +1,9 @@
 table fact_budget
-	lineageTag: f96fc9e8-6250-451b-b07d-c043a1124abd
+	lineageTag: 46d19362-ef07-45c1-b1d6-49b3c01b78b5
 
 	column district
 		dataType: string
-		lineageTag: 248f0c36-1892-42db-a5ed-239343fe2782
+		lineageTag: 80098428-86e9-4001-8da0-8cc3cbd38f45
 		summarizeBy: none
 		sourceColumn: district
 
@@ -11,7 +11,7 @@ table fact_budget
 
 	column line_item
 		dataType: string
-		lineageTag: 6da336f1-eff4-42c7-b27a-4cc7fd308aa8
+		lineageTag: dbd151f0-62c8-43b6-9c07-f732dbd9d8aa
 		summarizeBy: none
 		sourceColumn: line_item
 
@@ -19,7 +19,7 @@ table fact_budget
 
 	column budget_amount
 		dataType: double
-		lineageTag: 388dbf14-9bba-4b49-b4d2-d8c586e60b83
+		lineageTag: 7924610e-19d6-4d11-a583-fa2a7546a680
 		summarizeBy: none
 		sourceColumn: budget_amount
 
@@ -28,7 +28,7 @@ table fact_budget
 	column date
 		dataType: dateTime
 		formatString: Short Date
-		lineageTag: 3a887624-3348-4065-b2a0-b78abdfc9e99
+		lineageTag: 18b8e29b-919a-4b11-84bb-5df92e3a134a
 		summarizeBy: none
 		sourceColumn: date
 

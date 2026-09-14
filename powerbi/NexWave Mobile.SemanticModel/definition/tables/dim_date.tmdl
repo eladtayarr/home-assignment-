@@ -1,9 +1,10 @@
 table dim_date
-	lineageTag: e1175970-9b28-442a-a2be-1af3244aa6b8
+	lineageTag: 51805334-4393-4218-a62c-6acc56145e74
+	dataCategory: Time
 
 	column year
 		dataType: int64
-		lineageTag: 901fa1ba-e8f1-4e12-91fc-de86b4f38b8e
+		lineageTag: 31cd13e6-3386-48a7-bb3e-a425f1ad8b89
 		summarizeBy: none
 		sourceColumn: year
 
@@ -11,7 +12,7 @@ table dim_date
 
 	column quarter
 		dataType: string
-		lineageTag: 4486102d-b58e-4b48-8600-c6f5d0fce282
+		lineageTag: d24bf41c-6551-47ba-82f6-df890fafff74
 		summarizeBy: none
 		sourceColumn: quarter
 
@@ -19,7 +20,7 @@ table dim_date
 
 	column year_quarter
 		dataType: string
-		lineageTag: 61058606-7f6f-4fb9-84d0-e0cc96b63d55
+		lineageTag: ea3f4625-1294-4992-aad2-196845c4cae5
 		summarizeBy: none
 		sourceColumn: year_quarter
 
@@ -27,7 +28,7 @@ table dim_date
 
 	column month_num
 		dataType: int64
-		lineageTag: e1f67f95-df05-4457-9920-568c910130ed
+		lineageTag: e3b3312d-d520-4d06-bc0c-370a5a39a5d7
 		summarizeBy: none
 		sourceColumn: month_num
 
@@ -35,7 +36,7 @@ table dim_date
 
 	column month_name
 		dataType: string
-		lineageTag: 91c3f99f-9988-4ac2-b34a-491820580f4f
+		lineageTag: 1a4e1fa0-1278-4e65-b16a-562e2f8ac864
 		summarizeBy: none
 		sourceColumn: month_name
 
@@ -43,7 +44,7 @@ table dim_date
 
 	column month_short
 		dataType: string
-		lineageTag: 3c1e93a6-78ad-42f8-915c-85dc1d5bf35c
+		lineageTag: 6f72c1c7-78c1-4f3b-8b74-94719e0081af
 		summarizeBy: none
 		sourceColumn: month_short
 
@@ -51,7 +52,7 @@ table dim_date
 
 	column year_month
 		dataType: string
-		lineageTag: 6bd16ee2-043d-4471-8022-f5205ca796c7
+		lineageTag: 08eeae37-7845-4895-b847-251d38f7cf20
 		summarizeBy: none
 		sourceColumn: year_month
 
@@ -59,7 +60,7 @@ table dim_date
 
 	column year_month_label
 		dataType: string
-		lineageTag: aac9c656-7e9c-4b2c-95cc-c81295a8eafa
+		lineageTag: a066050e-0a97-4c23-a84d-c7be97400e5e
 		summarizeBy: none
 		sourceColumn: year_month_label
 
@@ -67,7 +68,7 @@ table dim_date
 
 	column day_of_month
 		dataType: int64
-		lineageTag: fa8c6d40-530c-4a57-a343-e3337ce94af0
+		lineageTag: a6fa3b83-0f4c-4ef1-b22f-9e7e446c4208
 		summarizeBy: none
 		sourceColumn: day_of_month
 
@@ -75,7 +76,7 @@ table dim_date
 
 	column fiscal_year
 		dataType: int64
-		lineageTag: 3f9c2323-7620-4bfb-816c-1a186e7c7a31
+		lineageTag: aeec6c35-6f7c-4ddb-b57f-d463327977e0
 		summarizeBy: none
 		sourceColumn: fiscal_year
 
@@ -83,7 +84,7 @@ table dim_date
 
 	column fiscal_quarter
 		dataType: string
-		lineageTag: fbf9e787-e31f-4e0a-aef8-697541fa0f30
+		lineageTag: cdc38220-5821-46e2-bb9a-21a285763b55
 		summarizeBy: none
 		sourceColumn: fiscal_quarter
 
@@ -91,7 +92,7 @@ table dim_date
 
 	column is_month_start
 		dataType: boolean
-		lineageTag: 41b04851-982a-4fe1-ab60-c91d7c6c24a7
+		lineageTag: b7a09035-0e28-4310-bfcc-1db04b304dd6
 		summarizeBy: none
 		sourceColumn: is_month_start
 
@@ -99,7 +100,7 @@ table dim_date
 
 	column is_month_end
 		dataType: boolean
-		lineageTag: 2c802ac6-3ae0-4f4b-83aa-6765bb15c64e
+		lineageTag: c4fef19a-aa76-4ea8-9b9c-98056c1f4e2f
 		summarizeBy: none
 		sourceColumn: is_month_end
 
@@ -107,8 +108,9 @@ table dim_date
 
 	column date
 		dataType: dateTime
+		isKey
 		formatString: Short Date
-		lineageTag: 220fd36d-aae3-49f3-906c-d5d843db4539
+		lineageTag: 4e006934-f22b-4eb8-b13c-fbfea8b0502a
 		summarizeBy: none
 		sourceColumn: date
 

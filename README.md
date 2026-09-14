@@ -31,6 +31,7 @@ data/clean/         cleaned star-schema tables, ready to import into Power BI
 scripts/            Python (pandas) scripts: profiling -> cleaning -> analysis
 docs/               the memo, model, DAX, findings, and dashboard spec (phases 1-5)
 deck/               presentation build script + the final .pptx (phase 6)
+powerbi/            a Power BI Project (.pbip) with the semantic model pre-built
 ```
 
 ## Reproducing the analysis
@@ -47,6 +48,14 @@ python3 scripts/06_mobilezone_cohort_check.py  # Phase 4: cohort-quality confirm
 
 ## Building the Power BI dashboard
 
+**Fastest path:** open `powerbi/NexWave Mobile.pbip` in Power BI Desktop — it's
+a pre-built semantic model (all 8 tables, 9 relationships, 21 DAX measures,
+`dim_date` already marked as the Date Table). Edit one parameter to point at
+your local copy of `data/clean/`, refresh, then build the 3 report pages per
+`docs/05_dashboard_spec.md`. See `powerbi/README.md` for the exact steps and
+important caveats (I don't have Power BI Desktop to test-open this myself).
+
+**From scratch instead:**
 1. Import the 8 tables in `data/clean/` (Get Data → Text/CSV), or replicate the
    equivalent Power Query steps documented in `docs/02_data_model.md`.
 2. Build the relationships per the diagram in `docs/02_data_model.md` §3; mark

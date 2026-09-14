@@ -1,9 +1,9 @@
 table dim_customer
-	lineageTag: b7226319-9b1e-4951-9151-65d88defc501
+	lineageTag: 53bb5151-5caf-4d6c-9613-517fc10c5b31
 
 	column customer_id
 		dataType: string
-		lineageTag: 14e88b58-06f8-404b-b36e-22770c9fc02e
+		lineageTag: 27b5a894-64ea-43b9-9eeb-a6fce34e9ce9
 		summarizeBy: none
 		sourceColumn: customer_id
 
@@ -11,7 +11,7 @@ table dim_customer
 
 	column segment
 		dataType: string
-		lineageTag: 40589bb0-61dd-4567-afdf-f791e78bcd6c
+		lineageTag: 902168c6-2e95-4724-9b71-14216371b12b
 		summarizeBy: none
 		sourceColumn: segment
 
@@ -19,7 +19,7 @@ table dim_customer
 
 	column city
 		dataType: string
-		lineageTag: 58e9ad69-ba11-4154-a9fc-04140e2d1a98
+		lineageTag: a26adc79-f4ef-4c34-afff-619467aa387b
 		summarizeBy: none
 		sourceColumn: city
 
@@ -27,7 +27,7 @@ table dim_customer
 
 	column district_detail
 		dataType: string
-		lineageTag: f7764f72-0d15-43ba-8dba-e26e5e3a9da3
+		lineageTag: 3c124c0b-b2e8-4b50-acfa-4dd86e776b68
 		summarizeBy: none
 		sourceColumn: district_detail
 
@@ -35,7 +35,7 @@ table dim_customer
 
 	column district
 		dataType: string
-		lineageTag: 0907f65c-0f49-4695-96c4-2ecdad5b2cc2
+		lineageTag: b2f27cba-0595-4c1e-8542-958f62622fc9
 		summarizeBy: none
 		sourceColumn: district
 

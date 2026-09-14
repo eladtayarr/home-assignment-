@@ -1,35 +1,35 @@
-relationship 2aeb56d6-419a-4ffa-88a6-8d7d50a18fb7
+relationship 477eb0a4-2a27-4881-93a3-86b509a86a56
 	fromColumn: dim_customer.district
 	toColumn: dim_district.district
 
-relationship 15bab11d-f22b-475e-a51c-75c4878d20b2
+relationship 492f065b-d873-49bf-965c-107ee091a45c
 	fromColumn: dim_dealer.district
 	toColumn: dim_district.district
 
-relationship 64a343ab-eeb8-4bbb-ac4f-de69f83280f1
+relationship 85cb1ded-0fa0-4bca-92c7-902af10d532f
 	fromColumn: fact_budget.district
 	toColumn: dim_district.district
 
-relationship c1efde2a-4889-480d-b25b-9828739d4baf
+relationship 67bb264f-fbf9-4ad9-b96d-73de89ec2392
 	fromColumn: dim_subscriber.customer_id
 	toColumn: dim_customer.customer_id
 
-relationship ca5da9a3-89b7-46c8-8b88-b22232062618
+relationship fedca0dc-0411-417c-9c6f-c98561803027
 	fromColumn: dim_subscriber.dealer_code
 	toColumn: dim_dealer.dealer_code
 
-relationship 6736e1fb-1e30-45e0-93a1-3537a5dca617
+relationship bdd5a7ba-9571-4c67-983b-937ce650342b
 	fromColumn: dim_subscriber.plan_code
 	toColumn: dim_plan.plan_code
 
-relationship 642e272f-47f1-499b-85f8-9bdf26db300a
+relationship d151edee-eee4-46de-8889-adfe9bfaf713
 	fromColumn: fact_billing.subscriber_id
 	toColumn: dim_subscriber.subscriber_id
 
-relationship df480f73-7f1c-4e2d-b85c-b7ce21a2e34b
+relationship cb88fbdb-5ca0-4307-a75f-3541b338eb90
 	fromColumn: fact_billing.date
 	toColumn: dim_date.date
 
-relationship bdec77d6-f5fd-4fbb-b3b6-c09ec9c06c13
+relationship 77751307-744c-4af2-97ba-d33e1d700869
 	fromColumn: fact_budget.date
 	toColumn: dim_date.date

@@ -1,9 +1,9 @@
 table dim_dealer
-	lineageTag: 0255ac8b-5f93-4fd5-bbfd-f9dc44241873
+	lineageTag: 6f8d8053-45d9-4d53-9864-8ca31e776e66
 
 	column dealer_code
 		dataType: string
-		lineageTag: d1c33d98-1039-4078-ab9a-507e417ef6c8
+		lineageTag: 0af00654-8dd7-47d1-82b8-40abfbdacd3a
 		summarizeBy: none
 		sourceColumn: dealer_code
 
@@ -11,7 +11,7 @@ table dim_dealer
 
 	column dealer_name
 		dataType: string
-		lineageTag: d821a8f3-0957-4e49-8fdc-5d551b43cfb9
+		lineageTag: 8f9c098e-f938-4fee-bd75-291387cf0735
 		summarizeBy: none
 		sourceColumn: dealer_name
 
@@ -19,7 +19,7 @@ table dim_dealer
 
 	column dealer_type
 		dataType: string
-		lineageTag: 808352d3-6b1c-4f19-b4d6-4a296e504fe8
+		lineageTag: d155608f-a657-413b-9474-cd995cf95411
 		summarizeBy: none
 		sourceColumn: dealer_type
 
@@ -27,7 +27,7 @@ table dim_dealer
 
 	column city
 		dataType: string
-		lineageTag: 6abaa67c-0561-4df2-80f1-54caa2990f65
+		lineageTag: 7694500d-fb6d-4f09-8ead-b9833863f282
 		summarizeBy: none
 		sourceColumn: city
 
@@ -35,7 +35,7 @@ table dim_dealer
 
 	column district_detail
 		dataType: string
-		lineageTag: b0949305-3fec-413a-8a9a-8123f996582a
+		lineageTag: ee8dcb7c-14f6-4aaf-b5de-fa8589d1ce95
 		summarizeBy: none
 		sourceColumn: district_detail
 
@@ -43,7 +43,7 @@ table dim_dealer
 
 	column district
 		dataType: string
-		lineageTag: 2b79d8ba-6dbd-4e1f-a2c6-d37d579f99f3
+		lineageTag: 575ed240-9fbb-420d-8112-02d764e5b2e9
 		summarizeBy: none
 		sourceColumn: district
 

@@ -1,9 +1,9 @@
 table fact_billing
-	lineageTag: 075f53eb-69e2-4f45-baf7-afaf89b15020
+	lineageTag: c622720a-7d25-4acb-a0b6-d18356db9eac
 
 	column subscriber_id
 		dataType: string
-		lineageTag: e904a759-a92d-429d-961b-c291939982b8
+		lineageTag: 8ba43cb7-f9af-4e91-b5b2-a17296835510
 		summarizeBy: none
 		sourceColumn: subscriber_id
 
@@ -11,7 +11,7 @@ table fact_billing
 
 	column billed_amount
 		dataType: double
-		lineageTag: 88616874-f7e3-461c-8896-a1db75f1fff5
+		lineageTag: df8ffd53-0b86-42a0-8f1c-57e66cb7cde7
 		summarizeBy: none
 		sourceColumn: billed_amount
 
@@ -20,7 +20,7 @@ table fact_billing
 	column date
 		dataType: dateTime
 		formatString: Short Date
-		lineageTag: 5820f5bc-ac12-4b25-ad4f-723cc055daba
+		lineageTag: 602b203c-4568-445c-874e-2a386a45393c
 		summarizeBy: none
 		sourceColumn: date
 

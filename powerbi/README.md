@@ -48,7 +48,14 @@ The model reads its data from CSV files via a text parameter,
 
 ## Manual steps you still need to do
 
-<!-- MARK_AS_DATE_TABLE_SECTION -->
+Just the `DataFolderPath` edit above. Everything else — including marking
+`dim_date` as the model's Date Table (`dataCategory: Time` on the table,
+`isKey` on its `date` column — the exact TOM properties Desktop's "Mark as
+Date Table" action sets) — is already baked into the TMDL, so every
+time-intelligence measure (YoY, MoM, YTD, trailing periods) should work as
+soon as the model refreshes. `dim_date` is a genuine contiguous daily
+calendar with no gaps or duplicates (2023-07-01 → 2025-12-31, verified during
+Phase 2), which is what that refresh-time validation actually checks.
 
 ## How this was checked (and what wasn't)
 
