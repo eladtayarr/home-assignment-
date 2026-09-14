@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["dim_district","dim_customer","dim_dealer","dim_plan","dim_subscriber","dim_date","fact_billing","fact_budget","_Measures"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref expression DataFolderPath
+ref table dim_district
+ref table dim_customer
+ref table dim_dealer
+ref table dim_plan
+ref table dim_subscriber
+ref table dim_date
+ref table fact_billing
+ref table fact_budget
+ref table _Measures

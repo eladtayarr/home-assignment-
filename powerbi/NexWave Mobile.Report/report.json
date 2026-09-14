@@ -1,0 +1,17 @@
+{
+  "config": "{\"version\": \"5.45\", \"themeCollection\": {\"baseTheme\": {\"name\": \"CY23SU08\"}}, \"activeSectionIndex\": 0}",
+  "layoutOptimization": 0,
+  "sections": [
+    {
+      "name": "ReportSection1",
+      "displayName": "Start here \u2014 build per docs/05_dashboard_spec.md",
+      "filters": "[]",
+      "ordinal": 0,
+      "visualContainers": [],
+      "config": "{}",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "resourcePackages": []
+}

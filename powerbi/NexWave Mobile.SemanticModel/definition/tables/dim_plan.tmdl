@@ -1,0 +1,55 @@
+table dim_plan
+	lineageTag: 03b3ca78-a2c6-4799-bbe4-188acf415696
+
+	column plan_code
+		dataType: string
+		lineageTag: 78ba2edc-dfe2-4bdc-a59e-a0e705857b54
+		summarizeBy: none
+		sourceColumn: plan_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column plan_name
+		dataType: string
+		lineageTag: c57200cd-8088-4f6b-8d1c-57a118ccd6ec
+		summarizeBy: none
+		sourceColumn: plan_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column plan_family
+		dataType: string
+		lineageTag: 27e9811b-011b-40a6-be8a-0d8327b95a53
+		summarizeBy: none
+		sourceColumn: plan_family
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthly_list_price
+		dataType: int64
+		lineageTag: 3b303afb-2527-4234-aa7f-aa03595ded8c
+		summarizeBy: none
+		sourceColumn: monthly_list_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_legacy_plan
+		dataType: boolean
+		lineageTag: 7d37867b-f56f-47a1-8e56-e23a5ea5b6b0
+		summarizeBy: none
+		sourceColumn: is_legacy_plan
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_plan = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolderPath & "dim_plan.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"plan_code", type text}, {"plan_name", type text}, {"plan_family", type text}, {"monthly_list_price", Int64.Type}}),
+				    #"Fixed is_legacy_plan" = Table.TransformColumns(#"Changed Type", {{"is_legacy_plan", each Text.Upper(Text.Trim(Text.From(_))) = "TRUE", type logical}})
+				in
+				    #"Fixed is_legacy_plan"
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,54 @@
+table dim_customer
+	lineageTag: b7226319-9b1e-4951-9151-65d88defc501
+
+	column customer_id
+		dataType: string
+		lineageTag: 14e88b58-06f8-404b-b36e-22770c9fc02e
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment
+		dataType: string
+		lineageTag: 40589bb0-61dd-4567-afdf-f791e78bcd6c
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 58e9ad69-ba11-4154-a9fc-04140e2d1a98
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column district_detail
+		dataType: string
+		lineageTag: f7764f72-0d15-43ba-8dba-e26e5e3a9da3
+		summarizeBy: none
+		sourceColumn: district_detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column district
+		dataType: string
+		lineageTag: 0907f65c-0f49-4695-96c4-2ecdad5b2cc2
+		summarizeBy: none
+		sourceColumn: district
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customer = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolderPath & "dim_customer.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"customer_id", type text}, {"segment", type text}, {"city", type text}, {"district_detail", type text}, {"district", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

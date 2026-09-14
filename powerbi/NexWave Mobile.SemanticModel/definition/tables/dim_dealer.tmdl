@@ -1,0 +1,62 @@
+table dim_dealer
+	lineageTag: 0255ac8b-5f93-4fd5-bbfd-f9dc44241873
+
+	column dealer_code
+		dataType: string
+		lineageTag: d1c33d98-1039-4078-ab9a-507e417ef6c8
+		summarizeBy: none
+		sourceColumn: dealer_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column dealer_name
+		dataType: string
+		lineageTag: d821a8f3-0957-4e49-8fdc-5d551b43cfb9
+		summarizeBy: none
+		sourceColumn: dealer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dealer_type
+		dataType: string
+		lineageTag: 808352d3-6b1c-4f19-b4d6-4a296e504fe8
+		summarizeBy: none
+		sourceColumn: dealer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 6abaa67c-0561-4df2-80f1-54caa2990f65
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column district_detail
+		dataType: string
+		lineageTag: b0949305-3fec-413a-8a9a-8123f996582a
+		summarizeBy: none
+		sourceColumn: district_detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column district
+		dataType: string
+		lineageTag: 2b79d8ba-6dbd-4e1f-a2c6-d37d579f99f3
+		summarizeBy: none
+		sourceColumn: district
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_dealer = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolderPath & "dim_dealer.csv"), [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"dealer_code", type text}, {"dealer_name", type text}, {"dealer_type", type text}, {"city", type text}, {"district_detail", type text}, {"district", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

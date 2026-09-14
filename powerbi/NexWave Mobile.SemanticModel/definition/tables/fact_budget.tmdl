@@ -1,0 +1,48 @@
+table fact_budget
+	lineageTag: f96fc9e8-6250-451b-b07d-c043a1124abd
+
+	column district
+		dataType: string
+		lineageTag: 248f0c36-1892-42db-a5ed-239343fe2782
+		summarizeBy: none
+		sourceColumn: district
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_item
+		dataType: string
+		lineageTag: 6da336f1-eff4-42c7-b27a-4cc7fd308aa8
+		summarizeBy: none
+		sourceColumn: line_item
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget_amount
+		dataType: double
+		lineageTag: 388dbf14-9bba-4b49-b4d2-d8c586e60b83
+		summarizeBy: none
+		sourceColumn: budget_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3a887624-3348-4065-b2a0-b78abdfc9e99
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_budget = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolderPath & "fact_budget.csv"), [Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"district", type text}, {"line_item", type text}, {"budget_amount", type number}}),
+				    #"Fixed date" = Table.TransformColumns(#"Changed Type", {{"date", each if _ = null or _ = "" then null else Date.FromText(_), type date}})
+				in
+				    #"Fixed date"
+
+	annotation PBI_ResultType = Table

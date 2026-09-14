@@ -1,0 +1,288 @@
+table _Measures
+	lineageTag: 5246b030-7760-461f-a30c-b7f2672ae418
+	isHidden
+
+	column _
+		dataType: int64
+		lineageTag: efcf4f51-b703-4a5e-ba00-9b25dad61157
+		isHidden
+		summarizeBy: none
+		sourceColumn: _
+
+		annotation SummarizationSetBy = Automatic
+
+	measure 'Total Revenue' =
+		```
+		SUM(fact_billing[billed_amount])
+		```
+		formatString: "#,##0"
+		lineageTag: 2f8a1136-0f3b-45f2-8f92-5d85cb4a5589
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue MoM %' =
+		```
+		VAR CurrentRevenue = [Total Revenue]
+		VAR PriorMonthRevenue =
+		    CALCULATE([Total Revenue], DATEADD(dim_date[date], -1, MONTH))
+		RETURN
+		    DIVIDE(CurrentRevenue - PriorMonthRevenue, PriorMonthRevenue)
+		```
+		formatString: "0.0%;-0.0%;0.0%"
+		lineageTag: 96acb436-ba36-4a92-a98b-27c1a2a42bb8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue YoY %' =
+		```
+		VAR CurrentRevenue = [Total Revenue]
+		VAR PriorYearRevenue =
+		    CALCULATE([Total Revenue], SAMEPERIODLASTYEAR(dim_date[date]))
+		RETURN
+		    DIVIDE(CurrentRevenue - PriorYearRevenue, PriorYearRevenue)
+		```
+		formatString: "0.0%;-0.0%;0.0%"
+		lineageTag: cd5213bf-9166-446a-acb5-7e3056837066
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Trailing 3M' =
+		```
+		CALCULATE(
+		    [Total Revenue],
+		    DATESINPERIOD(dim_date[date], MAX(dim_date[date]), -3, MONTH)
+		)
+		```
+		formatString: "#,##0"
+		lineageTag: db38a5e0-7c03-429c-94b3-55f628fc5439
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Trailing 12M' =
+		```
+		CALCULATE(
+		    [Total Revenue],
+		    DATESINPERIOD(dim_date[date], MAX(dim_date[date]), -12, MONTH)
+		)
+		```
+		formatString: "#,##0"
+		lineageTag: 8dbf523c-576d-4ae8-a5da-7377ee5608d5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Active Subscribers (EOP)' =
+		```
+		VAR LastDateInContext = MAX(dim_date[date])
+		VAR TargetMonthStart = DATE(YEAR(LastDateInContext), MONTH(LastDateInContext), 1)
+		RETURN
+		CALCULATE(
+		    DISTINCTCOUNT(fact_billing[subscriber_id]),
+		    fact_billing[date] = TargetMonthStart
+		)
+		```
+		formatString: "#,##0"
+		lineageTag: 5170d963-4bc0-4a39-a6d2-00217734fac7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Active Subscribers (BOP)' =
+		```
+		VAR LastDateInContext = MAX(dim_date[date])
+		VAR TargetMonthStart = DATE(YEAR(LastDateInContext), MONTH(LastDateInContext), 1)
+		VAR PriorMonthStart = EDATE(TargetMonthStart, -1)
+		RETURN
+		CALCULATE(
+		    DISTINCTCOUNT(fact_billing[subscriber_id]),
+		    fact_billing[date] = PriorMonthStart
+		)
+		```
+		formatString: "#,##0"
+		lineageTag: 25850f3d-295d-4798-9a61-8e30a46e9d56
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'New Subscribers (Gross Adds)' =
+		```
+		VAR PeriodStart = MIN(dim_date[date])
+		VAR PeriodEnd = MAX(dim_date[date])
+		RETURN
+		CALCULATE(
+		    COUNTROWS(dim_subscriber),
+		    dim_subscriber[join_date] >= PeriodStart,
+		    dim_subscriber[join_date] <= PeriodEnd
+		)
+		```
+		formatString: "#,##0"
+		lineageTag: b7d8feac-bb7a-48d8-9653-29032996dbb0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Churned Subscribers' =
+		```
+		VAR PeriodStart = MIN(dim_date[date])
+		VAR PeriodEnd = MAX(dim_date[date])
+		RETURN
+		CALCULATE(
+		    COUNTROWS(dim_subscriber),
+		    dim_subscriber[churn_date] >= PeriodStart,
+		    dim_subscriber[churn_date] <= PeriodEnd
+		)
+		```
+		formatString: "#,##0"
+		lineageTag: 8f93727f-768a-481c-92a1-102c37ad9681
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Subscriber Adds' =
+		```
+		[New Subscribers (Gross Adds)] - [Churned Subscribers]
+		```
+		formatString: "#,##0"
+		lineageTag: 71f10413-0e1e-4373-8aae-ea137f349398
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Churn Rate (Monthly %)' =
+		```
+		DIVIDE([Churned Subscribers], [Active Subscribers (BOP)])
+		```
+		formatString: "0.00%;-0.00%;0.00%"
+		lineageTag: dfebdc7b-bfb5-44da-91c3-5919145bed41
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Churn Rate Trailing 3M (Avg)' =
+		```
+		AVERAGEX(
+		    DATESINPERIOD(dim_date[date], MAX(dim_date[date]), -3, MONTH),
+		    [Churn Rate (Monthly %)]
+		)
+		```
+		formatString: "0.00%;-0.00%;0.00%"
+		lineageTag: 59de3dd3-d2e5-4555-8160-dec5c5549ce2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ARPU =
+		```
+		DIVIDE([Total Revenue], [Active Subscribers (EOP)])
+		```
+		formatString: "#,##0.00"
+		lineageTag: 52cb8d87-8cf9-4dbe-a66a-91e7b758e269
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ARPU MoM %' =
+		```
+		VAR CurrentARPU = [ARPU]
+		VAR PriorMonthARPU = CALCULATE([ARPU], DATEADD(dim_date[date], -1, MONTH))
+		RETURN
+		    DIVIDE(CurrentARPU - PriorMonthARPU, PriorMonthARPU)
+		```
+		formatString: "0.0%;-0.0%;0.0%"
+		lineageTag: 52b00bb7-e693-4753-be73-6055dd38a78e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget Revenue' =
+		```
+		SUM(fact_budget[budget_amount])
+		```
+		formatString: "#,##0"
+		lineageTag: 3f166aae-65aa-4804-88cf-44e83703fc61
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget Variance' =
+		```
+		[Total Revenue] - [Budget Revenue]
+		```
+		formatString: "#,##0;-#,##0"
+		lineageTag: b2160756-e45f-43a2-b2b0-6f1a262356f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget Variance %' =
+		```
+		DIVIDE([Budget Variance], [Budget Revenue])
+		```
+		formatString: "0.0%;-0.0%;0.0%"
+		lineageTag: afe69e5b-80cb-4c32-bf74-d521200bd4ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget Variance YTD' =
+		```
+		VAR ActualYTD = CALCULATE([Total Revenue], DATESYTD(dim_date[date]))
+		VAR BudgetYTD = CALCULATE([Budget Revenue], DATESYTD(dim_date[date]))
+		RETURN
+		    ActualYTD - BudgetYTD
+		```
+		formatString: "#,##0;-#,##0"
+		lineageTag: 8df5c558-3af9-4c3d-9840-78d70d55deb2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Subscribers on Legacy Plans' =
+		```
+		VAR LegacyActive =
+		    CALCULATE(
+		        COUNTROWS(dim_subscriber),
+		        dim_plan[is_legacy_plan] = TRUE,
+		        dim_subscriber[status] = "Active"
+		    )
+		VAR TotalActive =
+		    CALCULATE(
+		        COUNTROWS(dim_subscriber),
+		        dim_subscriber[status] = "Active"
+		    )
+		RETURN
+		    DIVIDE(LegacyActive, TotalActive)
+		```
+		formatString: "0.0%;-0.0%;0.0%"
+		lineageTag: 39152e53-6d96-4782-a3b9-47f1ba91a923
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'New Subscriber Share %' =
+		```
+		VAR PeriodStart = MIN(dim_date[date])
+		VAR PeriodEnd = MAX(dim_date[date])
+		VAR DealerAdds = [New Subscribers (Gross Adds)]
+		VAR CompanyAdds =
+		    CALCULATE(
+		        COUNTROWS(dim_subscriber),
+		        REMOVEFILTERS(dim_dealer),
+		        dim_subscriber[join_date] >= PeriodStart,
+		        dim_subscriber[join_date] <= PeriodEnd
+		    )
+		RETURN
+		    DIVIDE(DealerAdds, CompanyAdds)
+		```
+		formatString: "0.0%;-0.0%;0.0%"
+		lineageTag: 1d21671c-7407-4a9f-acdf-c94f192ae1a2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '180-Day Cohort Churn Rate' =
+		```
+		VAR CohortSize = COUNTROWS(dim_subscriber)
+		VAR CohortChurned180 =
+		    CALCULATE(
+		        COUNTROWS(dim_subscriber),
+		        dim_subscriber[Churned Within 180 Days] = TRUE
+		    )
+		RETURN
+		    DIVIDE(CohortChurned180, CohortSize)
+		```
+		formatString: "0.0%;-0.0%;0.0%"
+		lineageTag: 1f88ddb6-e0e4-4d83-a937-00e609e04350
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition _Measures = m
+		mode: import
+		source =
+			#table(type table [_ = Int64.Type], {})
+
+	annotation PBI_ResultType = Table
