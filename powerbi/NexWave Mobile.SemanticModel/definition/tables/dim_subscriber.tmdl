@@ -1,0 +1,98 @@
+table dim_subscriber
+	lineageTag: 22d5e7d5-245f-44bf-9b03-f6e806c570d3
+
+	column subscriber_id
+		dataType: string
+		lineageTag: 5661b68e-62fb-4d08-baa8-2d32b8d9e3e2
+		summarizeBy: none
+		sourceColumn: subscriber_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: d209c0a8-0f28-4775-8fae-533662253aea
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dealer_code
+		dataType: string
+		lineageTag: 7b270634-2b71-4a43-8432-a175ed1089e1
+		summarizeBy: none
+		sourceColumn: dealer_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column plan_code
+		dataType: string
+		lineageTag: 64086936-0566-456e-8235-4462e807d26b
+		summarizeBy: none
+		sourceColumn: plan_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: ba3fec66-156a-4995-a991-4017def48d44
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column tenure_days
+		dataType: int64
+		lineageTag: 81890328-d16b-4b82-a474-fdbe8356003b
+		summarizeBy: none
+		sourceColumn: tenure_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_billing_window
+		dataType: boolean
+		lineageTag: 9f426cb0-54fc-47e7-8748-782eef3d94a8
+		summarizeBy: none
+		sourceColumn: in_billing_window
+
+		annotation SummarizationSetBy = Automatic
+
+	column join_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a60d1678-6633-4860-a876-6e68b7c4e519
+		summarizeBy: none
+		sourceColumn: join_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column churn_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3b32a0c4-711d-458f-9541-06cd680bc842
+		summarizeBy: none
+		sourceColumn: churn_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Churned Within 180 Days' = NOT ISBLANK(dim_subscriber[churn_date]) && DATEDIFF(dim_subscriber[join_date], dim_subscriber[churn_date], DAY) <= 180
+		dataType: boolean
+		lineageTag: babdf202-2c6f-4a2a-9f83-7ce49f1ddb0a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_subscriber = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolderPath & "dim_subscriber.csv"), [Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"subscriber_id", type text}, {"customer_id", type text}, {"dealer_code", type text}, {"plan_code", type text}, {"status", type text}, {"tenure_days", Int64.Type}}),
+				    #"Fixed in_billing_window" = Table.TransformColumns(#"Changed Type", {{"in_billing_window", each Text.Upper(Text.Trim(Text.From(_))) = "TRUE", type logical}}),
+				    #"Fixed join_date" = Table.TransformColumns(#"Fixed in_billing_window", {{"join_date", each if _ = null or _ = "" then null else Date.FromText(_), type date}}),
+				    #"Fixed churn_date" = Table.TransformColumns(#"Fixed join_date", {{"churn_date", each if _ = null or _ = "" then null else Date.FromText(_), type date}})
+				in
+				    #"Fixed churn_date"
+
+	annotation PBI_ResultType = Table

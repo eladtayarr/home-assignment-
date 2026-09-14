@@ -1,0 +1,22 @@
+table dim_district
+	lineageTag: 1a07abf3-d43c-46aa-bfd1-01f1dd7610d8
+
+	column district
+		dataType: string
+		lineageTag: 4453f923-7cb6-4a65-903c-880308531219
+		summarizeBy: none
+		sourceColumn: district
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_district = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolderPath & "dim_district.csv"), [Delimiter=",", Columns=1, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"district", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

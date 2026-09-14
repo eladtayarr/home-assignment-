@@ -1,0 +1,132 @@
+table dim_date
+	lineageTag: 51805334-4393-4218-a62c-6acc56145e74
+	dataCategory: Time
+
+	column year
+		dataType: int64
+		lineageTag: 31cd13e6-3386-48a7-bb3e-a425f1ad8b89
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: string
+		lineageTag: d24bf41c-6551-47ba-82f6-df890fafff74
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_quarter
+		dataType: string
+		lineageTag: ea3f4625-1294-4992-aad2-196845c4cae5
+		summarizeBy: none
+		sourceColumn: year_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_num
+		dataType: int64
+		lineageTag: e3b3312d-d520-4d06-bc0c-370a5a39a5d7
+		summarizeBy: none
+		sourceColumn: month_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 1a4e1fa0-1278-4e65-b16a-562e2f8ac864
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_short
+		dataType: string
+		lineageTag: 6f72c1c7-78c1-4f3b-8b74-94719e0081af
+		summarizeBy: none
+		sourceColumn: month_short
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: 08eeae37-7845-4895-b847-251d38f7cf20
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month_label
+		dataType: string
+		lineageTag: a066050e-0a97-4c23-a84d-c7be97400e5e
+		summarizeBy: none
+		sourceColumn: year_month_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_month
+		dataType: int64
+		lineageTag: a6fa3b83-0f4c-4ef1-b22f-9e7e446c4208
+		summarizeBy: none
+		sourceColumn: day_of_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year
+		dataType: int64
+		lineageTag: aeec6c35-6f7c-4ddb-b57f-d463327977e0
+		summarizeBy: none
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_quarter
+		dataType: string
+		lineageTag: cdc38220-5821-46e2-bb9a-21a285763b55
+		summarizeBy: none
+		sourceColumn: fiscal_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_month_start
+		dataType: boolean
+		lineageTag: b7a09035-0e28-4310-bfcc-1db04b304dd6
+		summarizeBy: none
+		sourceColumn: is_month_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_month_end
+		dataType: boolean
+		lineageTag: c4fef19a-aa76-4ea8-9b9c-98056c1f4e2f
+		summarizeBy: none
+		sourceColumn: is_month_end
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: 4e006934-f22b-4eb8-b13c-fbfea8b0502a
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolderPath & "dim_date.csv"), [Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"year", Int64.Type}, {"quarter", type text}, {"year_quarter", type text}, {"month_num", Int64.Type}, {"month_name", type text}, {"month_short", type text}, {"year_month", type text}, {"year_month_label", type text}, {"day_of_month", Int64.Type}, {"fiscal_year", Int64.Type}, {"fiscal_quarter", type text}}),
+				    #"Fixed is_month_start" = Table.TransformColumns(#"Changed Type", {{"is_month_start", each Text.Upper(Text.Trim(Text.From(_))) = "TRUE", type logical}}),
+				    #"Fixed is_month_end" = Table.TransformColumns(#"Fixed is_month_start", {{"is_month_end", each Text.Upper(Text.Trim(Text.From(_))) = "TRUE", type logical}}),
+				    #"Fixed date" = Table.TransformColumns(#"Fixed is_month_end", {{"date", each if _ = null or _ = "" then null else Date.FromText(_), type date}})
+				in
+				    #"Fixed date"
+
+	annotation PBI_ResultType = Table

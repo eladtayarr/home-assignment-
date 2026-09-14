@@ -1,0 +1,49 @@
+district,date,line_item,budget_amount
+Center,2025-01-01,Service revenue,546100.0
+Haifa,2025-01-01,Service revenue,230300.0
+Jerusalem & South,2025-01-01,Service revenue,390000.0
+North,2025-01-01,Service revenue,262500.0
+Center,2025-02-01,Service revenue,560900.0
+Haifa,2025-02-01,Service revenue,236500.0
+Jerusalem & South,2025-02-01,Service revenue,400500.0
+North,2025-02-01,Service revenue,269600.0
+Center,2025-03-01,Service revenue,576000.0
+Haifa,2025-03-01,Service revenue,242900.0
+Jerusalem & South,2025-03-01,Service revenue,411300.0
+North,2025-03-01,Service revenue,276800.0
+Center,2025-04-01,Service revenue,591600.0
+Haifa,2025-04-01,Service revenue,249500.0
+Jerusalem & South,2025-04-01,Service revenue,422400.0
+North,2025-04-01,Service revenue,284300.0
+Center,2025-05-01,Service revenue,607600.0
+Haifa,2025-05-01,Service revenue,256200.0
+Jerusalem & South,2025-05-01,Service revenue,433800.0
+North,2025-05-01,Service revenue,292000.0
+Center,2025-06-01,Service revenue,624000.0
+Haifa,2025-06-01,Service revenue,263100.0
+Jerusalem & South,2025-06-01,Service revenue,445500.0
+North,2025-06-01,Service revenue,299900.0
+Center,2025-07-01,Service revenue,640800.0
+Haifa,2025-07-01,Service revenue,270200.0
+Jerusalem & South,2025-07-01,Service revenue,457600.0
+North,2025-07-01,Service revenue,308000.0
+Center,2025-08-01,Service revenue,658100.0
+Haifa,2025-08-01,Service revenue,277500.0
+Jerusalem & South,2025-08-01,Service revenue,469900.0
+North,2025-08-01,Service revenue,316300.0
+Center,2025-09-01,Service revenue,675900.0
+Haifa,2025-09-01,Service revenue,285000.0
+Jerusalem & South,2025-09-01,Service revenue,482600.0
+North,2025-09-01,Service revenue,324800.0
+Center,2025-10-01,Service revenue,694100.0
+Haifa,2025-10-01,Service revenue,292700.0
+Jerusalem & South,2025-10-01,Service revenue,495600.0
+North,2025-10-01,Service revenue,333600.0
+Center,2025-11-01,Service revenue,712900.0
+Haifa,2025-11-01,Service revenue,300600.0
+Jerusalem & South,2025-11-01,Service revenue,509000.0
+North,2025-11-01,Service revenue,342600.0
+Center,2025-12-01,Service revenue,732100.0
+Haifa,2025-12-01,Service revenue,308800.0
+Jerusalem & South,2025-12-01,Service revenue,522800.0
+North,2025-12-01,Service revenue,351900.0

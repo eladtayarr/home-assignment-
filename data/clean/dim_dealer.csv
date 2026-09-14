@@ -1,0 +1,11 @@
+dealer_code,dealer_name,dealer_type,city,district_detail,district
+DLR-01,NexWave Store Tel Aviv,Own store,Tel Aviv,Center,Center
+DLR-02,NexWave Store Haifa,Own store,Haifa,Haifa,Haifa
+DLR-03,MobileZone,Franchise,Ramat Gan,Center,Center
+DLR-04,CellFix,Franchise,Jerusalem,Jerusalem,Jerusalem & South
+DLR-05,PhoneHub,Franchise,Beer Sheva,South,Jerusalem & South
+DLR-06,TopCell,Franchise,Netanya,Center,Center
+DLR-07,SmartShop,Franchise,Haifa,Haifa,Haifa
+DLR-08,GalaxyCom,Franchise,Rishon LeZion,Center,Center
+DLR-09,NexWave Online,Online,,Online / N/A,Online / N/A
+DLR-10,MobileNow,Franchise,Petah Tikva,Center,Center

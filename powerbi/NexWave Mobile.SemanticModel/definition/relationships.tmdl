@@ -1,0 +1,35 @@
+relationship 477eb0a4-2a27-4881-93a3-86b509a86a56
+	fromColumn: dim_customer.district
+	toColumn: dim_district.district
+
+relationship 492f065b-d873-49bf-965c-107ee091a45c
+	fromColumn: dim_dealer.district
+	toColumn: dim_district.district
+
+relationship 85cb1ded-0fa0-4bca-92c7-902af10d532f
+	fromColumn: fact_budget.district
+	toColumn: dim_district.district
+
+relationship 67bb264f-fbf9-4ad9-b96d-73de89ec2392
+	fromColumn: dim_subscriber.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship fedca0dc-0411-417c-9c6f-c98561803027
+	fromColumn: dim_subscriber.dealer_code
+	toColumn: dim_dealer.dealer_code
+
+relationship bdd5a7ba-9571-4c67-983b-937ce650342b
+	fromColumn: dim_subscriber.plan_code
+	toColumn: dim_plan.plan_code
+
+relationship d151edee-eee4-46de-8889-adfe9bfaf713
+	fromColumn: fact_billing.subscriber_id
+	toColumn: dim_subscriber.subscriber_id
+
+relationship cb88fbdb-5ca0-4307-a75f-3541b338eb90
+	fromColumn: fact_billing.date
+	toColumn: dim_date.date
+
+relationship 77751307-744c-4af2-97ba-d33e1d700869
+	fromColumn: fact_budget.date
+	toColumn: dim_date.date

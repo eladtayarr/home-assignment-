@@ -1,0 +1,4 @@
+expression DataFolderPath = "C:\CHANGE_ME\data\clean\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: d28a4b3e-2c76-4600-9860-0a9790a75bb6
+
+	annotation PBI_ResultType = Text

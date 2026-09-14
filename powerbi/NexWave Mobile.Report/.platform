@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "NexWave Mobile"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "eba20e77-232a-4b64-a2e4-85ac6124d2e0"
+  }
+}

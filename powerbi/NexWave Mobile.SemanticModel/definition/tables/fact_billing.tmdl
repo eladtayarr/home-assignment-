@@ -1,0 +1,40 @@
+table fact_billing
+	lineageTag: c622720a-7d25-4acb-a0b6-d18356db9eac
+
+	column subscriber_id
+		dataType: string
+		lineageTag: 8ba43cb7-f9af-4e91-b5b2-a17296835510
+		summarizeBy: none
+		sourceColumn: subscriber_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column billed_amount
+		dataType: double
+		lineageTag: df8ffd53-0b86-42a0-8f1c-57e66cb7cde7
+		summarizeBy: none
+		sourceColumn: billed_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 602b203c-4568-445c-874e-2a386a45393c
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_billing = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolderPath & "fact_billing.csv"), [Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"subscriber_id", type text}, {"billed_amount", type number}}),
+				    #"Fixed date" = Table.TransformColumns(#"Changed Type", {{"date", each if _ = null or _ = "" then null else Date.FromText(_), type date}})
+				in
+				    #"Fixed date"
+
+	annotation PBI_ResultType = Table
